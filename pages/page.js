@@ -4,7 +4,9 @@ import Nav from '../components/nav'
 import Airtable from 'airtable'
 import * as _ from 'lodash'
 
-class HelloUA extends React.Component {
+import EventCard from '../components/event-card';
+
+class EventsPage extends React.Component {
     static async getInitialProps({ req }) {
         // TODO move to env vars 
         var appId = "appk955G7OpyoX5QS"; 
@@ -32,7 +34,9 @@ class HelloUA extends React.Component {
                 _.map(
                     allEvents, 
                     (value, key) => {
-                        return (<li key={key}>{value.fields.Name}</li>)
+                        return (
+                            <EventCard event={value.fields}/>
+                        )
                     }
                 )
             }</ol>
@@ -40,4 +44,4 @@ class HelloUA extends React.Component {
     }
 }
 
-export default HelloUA
+export default EventsPage
