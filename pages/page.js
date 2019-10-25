@@ -18,7 +18,6 @@ class EventsPage extends React.Component {
 
         const allEvents = await eventsTable.select({ view: 'All Events' }).all();
 
-        console.log('All evts:', allEvents);
     
         return {
             allEvents: allEvents,
@@ -30,16 +29,28 @@ class EventsPage extends React.Component {
         console.log('allEvents:', allEvents);
 
         return (
-            <ol>{
-                _.map(
-                    allEvents, 
-                    (value, key) => {
-                        return (
-                            <EventCard event={value.fields}/>
-                        )
-                    }
-                )
-            }</ol>
+            <div>
+                <ol>{
+                    _.map(
+                        allEvents, 
+                        (value, key) => {
+                            return (
+                                <EventCard event={value.fields}/>
+                            )
+                        }
+                    )
+                }</ol>
+                <style jsx>{`
+                            ol { 
+                                list-style-type: none; 
+                                margin: 0; 
+                                padding: 0; 
+                                display: flex; 
+                                justify-content: center; 
+                                flex-wrap: wrap; 
+                            } 
+                `}</style>
+            </div>    
         )
     }
 }
