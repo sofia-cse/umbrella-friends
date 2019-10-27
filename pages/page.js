@@ -4,6 +4,7 @@ import Nav from '../components/nav'
 import Airtable from 'airtable'
 import * as _ from 'lodash'
 
+
 import EventCard from '../components/event-card';
 
 class EventsPage extends React.Component {
@@ -26,7 +27,6 @@ class EventsPage extends React.Component {
 
     render() {
         const { allEvents } = this.props;
-        console.log('allEvents:', allEvents);
 
         return (
             <div>
