@@ -1,8 +1,8 @@
 import React from 'react'
 import Head from 'next/head'
-import Nav from '../components/nav'
 import Airtable from 'airtable'
 import * as _ from 'lodash'
+import TopNav from '../components/top-nav'
 
 
 import EventCard from '../components/event-card';
@@ -17,16 +17,16 @@ class EventsPage extends React.Component {
 
         const eventsTable = airtableBase('Events');
 
-        const allEvents = await eventsTable.select({ view: 'All Events' }).all();
+        const pastEvents = await eventsTable.select({ view: 'Past AUF Events' }).all();
 
     
         return {
-            allEvents: allEvents,
+            pastEvents: pastEvents,
         }
     }
 
     render() {
-        const { allEvents } = this.props;
+        const { pastEvents } = this.props;
 
         return (
             <div>
@@ -38,16 +38,20 @@ class EventsPage extends React.Component {
                         href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
                     />
                 </Head>
-                <ol>{
-                    _.map(
-                        allEvents, 
-                        (value, key) => {
-                            return (
-                                <EventCard event={value.fields}/>
-                            )
-                        }
-                    )
-                }</ol>
+                <TopNav />
+                <div>
+                    <h1 className='title'>Past Events</h1>
+                    <ol>{
+                        _.map(
+                            pastEvents, 
+                            (value, key) => {
+                                return (
+                                    <EventCard event={value.fields}/>
+                                )
+                            }
+                        )
+                    }</ol>
+                </div>
                 <style jsx>{`
                             ol { 
                                 list-style-type: none; 
