@@ -30,6 +30,14 @@ class EventsPage extends React.Component {
 
         return (
             <div>
+                <Head>
+                    <title>Events</title>
+                    <link rel='icon' href='/favicon.ico' />
+                    <link
+                        rel="stylesheet"
+                        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+                    />
+                </Head>
                 <ol>{
                     _.map(
                         allEvents, 
